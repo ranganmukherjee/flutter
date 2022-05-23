@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/pages/home_page.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_catalog/pages/login_page.dart';
 
 void main() {
@@ -23,7 +24,9 @@ class MyApp extends StatelessWidget {
       // home: Home_page(),
       themeMode: ThemeMode.light,//theme mode has three property dark light and system if we give thememode.light then it will be light if .dark then it will be dark
       theme: ThemeData(//if there is normal "theme:" then in this case the colour will be yellow as we have set it inside as we did for theme and dark theme we can't do for system as it will automatically take which is the defaulttheme for system
-        primarySwatch: Colors.amber//primary swatch automatically set all the colur like colur of text colur of button  etc
+        primarySwatch: Colors.amber,//primary swatch automatically set all the colur like colur of text colur of button  etc
+        fontFamily: GoogleFonts.lato().fontFamily,
+        // primaryTextTheme: GoogleFonts.abelTextTheme()
       ),
       darkTheme: ThemeData(brightness: Brightness.dark//here the brightness is p
        ),
