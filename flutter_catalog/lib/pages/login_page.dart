@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_catalog/Util/routes.dart';
 
 class Loginpage extends StatelessWidget {
   @override
@@ -6,7 +7,9 @@ class Loginpage extends StatelessWidget {
     return Material(
         color: Colors
             .white, //image ka rang white hay to app ka background vi white bana diye
-        child: Column(
+        child: SingleChildScrollView(
+            //single child scroll view page ko scroll view me dal deta hay agar aapka phone ka size chota ho toh ye scroll karneyy mey aapki madat karta hay
+            child: Column(
           children: [
             Image.asset("assets/images/login.png",
                 fit: BoxFit
@@ -41,13 +44,13 @@ class Loginpage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 20.0,
+                    height: 40.0,
                   ),
                   ElevatedButton(
                     child: Text("Login"),
-                    style: TextButton.styleFrom(),
+                    style: TextButton.styleFrom(minimumSize: Size(150, 40)),
                     onPressed: () {
-                      print("Hi Rangan");
+                      Navigator.pushNamed(context, MyRoutes.homeRoute);
                     },
                   )
                 ],
@@ -61,6 +64,6 @@ class Loginpage extends StatelessWidget {
           //     fontWeight: FontWeight.bold,
           //   ),)
           // ),
-        ));
+        )));
   }
 }

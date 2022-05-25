@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_catalog/Util/routes.dart';
 import 'package:flutter_catalog/pages/home_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_catalog/pages/login_page.dart';
@@ -33,8 +34,8 @@ class MyApp extends StatelessWidget {
        initialRoute: "/Login",
       routes: {
         "/":(context) => Loginpage(),//by default whatever page is given on "/"that page is shown n the emulator
-        "/Login":(context) => Loginpage(),//this is a object of login page but as the compiler of dart is smart that iswhy we dont have to give new key word if we want we can give new key word
-        "/home":(context) => Home_page(),
+        MyRoutes.loginRoute:(context) => Loginpage(),//this is a object of login page but as the compiler of dart is smart that iswhy we dont have to give new key word if we want we can give new key word
+        MyRoutes.homeRoute:(context) => Home_page(),
       },      //when you app is started your app has multiple screen routs helps us to go to different routes route takes map map takes key and a value
 
     );
