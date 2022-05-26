@@ -1,7 +1,16 @@
+// ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/Util/routes.dart';
 
-class Loginpage extends StatelessWidget {
+class Loginpage extends StatefulWidget {
+  @override
+  State<Loginpage> createState() => _LoginpageState();
+}
+
+class _LoginpageState extends State<Loginpage> {
+  //loginpagestate has a underscore before its name in dart this means that we are declaring something private
+  String name = "";
+  bool changebutton = false;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -18,7 +27,7 @@ class Loginpage extends StatelessWidget {
               height: 20.0,
             ),
             Text(
-              "Welcome",
+              "Welcome $name",
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
@@ -33,9 +42,12 @@ class Loginpage extends StatelessWidget {
               child: Column(
                 children: [
                   TextFormField(
-                    decoration: InputDecoration(
-                        hintText: "Enter Username", labelText: "Username"),
-                  ),
+                      decoration: InputDecoration(
+                          hintText: "Enter Username", labelText: "Username"),
+                      onChanged: (Value) {
+                        name = Value;
+                        setState(() {});
+                      }),
                   TextFormField(
                     obscureText: true,
                     decoration: InputDecoration(
@@ -46,13 +58,45 @@ class Loginpage extends StatelessWidget {
                   SizedBox(
                     height: 40.0,
                   ),
-                  ElevatedButton(
-                    child: Text("Login"),
-                    style: TextButton.styleFrom(minimumSize: Size(150, 40)),
-                    onPressed: () {
-                      Navigator.pushNamed(context, MyRoutes.homeRoute);
-                    },
-                  )
+                  InkWell(
+                      onTap: () async {
+                        setState(() {
+                          changebutton = true;
+                        });
+                        await Future.delayed(Duration(seconds: 1));
+                        Navigator.pushNamed(context, MyRoutes.homeRoute);
+                      },
+                      child: AnimatedContainer(
+                        //creating a custom button where we can design a button//animated container can create some animation in the button animated container must contain a duration or else it will give error
+
+                        duration: Duration(
+                            seconds:1), //duration for which the animation will run as we click or hover in the button
+                        width:changebutton? 50:150, //width of the button
+                        height: 50, //height of the button
+
+                        alignment: Alignment.center,
+                        child:changebutton?Icon(Icons.done,color:Colors.white) :Text(
+                          //this where the text is written
+                          "Login", //the login text in the button
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                        ),
+                        decoration: BoxDecoration(//remember if you are using the decoration property of container always use the box color feature inside box decoration
+                            
+                            color: Colors.amber, //by default the colur of the button is white so we have to change it
+                            // shape: changebutton?BoxShape.circle:BoxShape.rectangle,//if change button = true then box shape = circle else rectangle and if we use this propety we cannot use the border radius property
+                            borderRadius: BorderRadius.circular(changebutton?50:8) //when we create the container initially at that time its edges were sharp but this property "boxradious" gives them rounded edges
+                            ),
+                      ))
+                  // ElevatedButton(
+                  //   child: Text("Login"),
+                  //   style: TextButton.styleFrom(minimumSize: Size(150, 40)),
+                  //   onPressed: () {
+                  //     Navigator.pushNamed(context, MyRoutes.homeRoute);
+                  //   },
+                  // )
                 ],
               ),
             )
