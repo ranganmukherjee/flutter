@@ -30,9 +30,10 @@ class MyApp extends StatelessWidget {
         fontFamily: GoogleFonts.lato().fontFamily,
         // primaryTextTheme: GoogleFonts.abelTextTheme()
       ),
+      debugShowCheckedModeBanner: false,
       darkTheme: ThemeData(brightness: Brightness.dark//here the brightness is p
        ),
-       initialRoute: "/Login",
+       initialRoute: "/home",
       routes: {
         "/":(context) => Loginpage(),//by default whatever page is given on "/"that page is shown n the emulator
         MyRoutes.loginRoute:(context) => Loginpage(),//this is a object of login page but as the compiler of dart is smart that iswhy we dont have to give new key word if we want we can give new key word
